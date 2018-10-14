@@ -26,7 +26,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
         sky.removeChild(star);
     };
 
-    setInterval(makeStar, 100);
+    const makeBuilding = function makeBuilding(startCoord, width, height) {
+        const newBuilding = document.createElement('div');
+        newBuilding.className = 'building';
+        newBuilding.style.height = `${height}px`;
+        newBuilding.style.width = `${width}px`;
+        newBuilding.style.left = `${startCoord}px`;
+        buildingContainer.appendChild(newBuilding);
+    };
 
-    window.makeStar = makeStar;
+    const makeBuildings = function makeBuildings () {
+        const totalWidth = buildingContainerDimensions.width;
+
+    };
+
+    setInterval(makeStar, 100);
+    window.makeBuilding = makeBuilding;
 });

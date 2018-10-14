@@ -21,4 +21,10 @@ body {
   bottom: 0;
   z-index: 1; }
 
+.building {
+  background-color: red;
+  position: absolute;
+  bottom: 0;
+  z-index: 2; }
+
 /*# sourceMappingURL=styles.css.map */
