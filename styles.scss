@@ -3,15 +3,23 @@ body {
 }
 
 #sky, #building-container {
-    background-color: black;
     width: 100vw
 }
 
 #sky {
+    background-color: black;
     height: 100vh;
 }
 
+.star {
+    background-color: white;
+    height: 2px;
+    width: 2px;
+    position: absolute;
+}
+
 #building-container {
+    background-color: transparent;
     height: 45vh;
     position: absolute;
     bottom: 0;
