@@ -35,11 +35,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
         buildingContainer.appendChild(newBuilding);
     };
 
-    const makeBuildings = function makeBuildings () {
-        const totalWidth = buildingContainerDimensions.width;
-
+    const getWidth = function getWidth (totalWidth) {
+        const minPct = 6;
+        const maxPct = 12;
+        const widthPct = randomIntFromInterval(minPct, maxPct) / 100;
+        const width = totalWidth * widthPct;
+        return width;
     };
 
+    const getHeight = function getHeight (totalHeight) {
+        const minPct = 50;
+        const maxPct = 110;
+        const heightPct = randomIntFromInterval(minPct, maxPct) / 100;
+        const height = totalHeight * heightPct;
+        return height;
+    };
+
+    const makeBuildings = function makeBuildings () {
+        const totalWidth = buildingContainerDimensions.width;
+        let remainingWidth = buildingContainerDimensions.width;
+
+        const totalHeight = buildingContainerDimensions.height;
+
+        while (remainingWidth > 0) {
+            const buildingHeight = getHeight(totalHeight);
+            const buildingWidth = getWidth(totalWidth);
+            const startCoord = totalWidth - remainingWidth;
+            makeBuilding(startCoord, buildingWidth, buildingHeight);
+            remainingWidth -= buildingWidth;
+        }
+    };
+
+    makeBuildings();
     setInterval(makeStar, 100);
     window.makeBuilding = makeBuilding;
 });
