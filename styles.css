@@ -1,0 +1,17 @@
+body {
+  margin: 0; }
+
+#sky, #building-container {
+  background-color: black;
+  width: 100vw; }
+
+#sky {
+  height: 100vh; }
+
+#building-container {
+  height: 45vh;
+  position: absolute;
+  bottom: 0;
+  z-index: 1; }
+
+/*# sourceMappingURL=styles.css.map */
