@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 #sky, #building-container {
@@ -16,11 +17,24 @@ body {
     height: 2px;
     width: 2px;
     position: absolute;
+    z-index: 0;
+}
+
+.star.red {
+    background-color: red;
+}
+
+.star.green {
+    background-color: green;
+}
+
+.star.blue {
+    background-color: blue;
 }
 
 #building-container {
     background-color: transparent;
-    height: 45vh;
+    height: 50vh;
     position: absolute;
     bottom: 0;
     z-index: 1;
@@ -31,6 +45,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+    padding-bottom: 5px;
     position: absolute;
     bottom: 0;
     z-index: 2;
@@ -47,5 +62,6 @@ body {
 }
 
 .window.on {
-    background: white;
+    background: yellow;
+    box-shadow: 0 0 1px 1px yellow;
 }
