@@ -26,8 +26,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
         sky.removeChild(star);
     };
 
+    const makeWindowRow = function makeWindows(buildingWidth, windowHeight) {
+        const windowRow = document.createElement('div');
+        windowRow.className = 'window-row';
+        const numWindows = randomIntFromInterval(5, 12);
+        const windowWidth = (buildingWidth / numWindows) - 1;
+        for (let i = 0; i <= numWindows; i++) {
+            const newWindow = document.createElement('div');
+            newWindow.className = 'window';
+            newWindow.style.height = `${windowHeight}px`;
+            newWindow.style.width = `${windowWidth}px`;
+            windowRow.appendChild(newWindow);
+        }
+        return windowRow;
+    };
+
     const makeBuilding = function makeBuilding(startCoord, width, height) {
         const newBuilding = document.createElement('div');
+        const numStories = randomIntFromInterval(10, 50);
+        const windowHeight = height / numStories;
+        for (let i = 0; i < windowHeight; i++) {
+            const windowRow = makeWindowRow(width, windowHeight);
+            newBuilding.appendChild(windowRow);
+        }
         newBuilding.className = 'building';
         newBuilding.style.height = `${height}px`;
         newBuilding.style.width = `${width}px`;
