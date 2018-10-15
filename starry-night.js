@@ -29,13 +29,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const makeWindowRow = function makeWindows(buildingWidth, windowHeight) {
         const windowRow = document.createElement('div');
         windowRow.className = 'window-row';
-        const numWindows = randomIntFromInterval(5, 12);
-        const windowWidth = (buildingWidth / numWindows) - 1;
+        windowRow.style.height = `${windowHeight}px`;
+        const numWindows = randomIntFromInterval(10, 25);
+        const windowWidth = (buildingWidth / numWindows);
         for (let i = 0; i <= numWindows; i++) {
             const newWindow = document.createElement('div');
             newWindow.className = 'window';
-            newWindow.style.height = `${windowHeight}px`;
-            newWindow.style.width = `${windowWidth}px`;
+            newWindow.style.height = `${windowHeight - 4}px`;
+            newWindow.style.width = `${windowWidth - 2}px`;
             windowRow.appendChild(newWindow);
         }
         return windowRow;
@@ -43,8 +44,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const makeBuilding = function makeBuilding(startCoord, width, height) {
         const newBuilding = document.createElement('div');
-        const numStories = randomIntFromInterval(10, 50);
-        const windowHeight = height / numStories;
+        const numStories = height / 20;
+        const windowHeight = (height / numStories) / 2;
         for (let i = 0; i < windowHeight; i++) {
             const windowRow = makeWindowRow(width, windowHeight);
             newBuilding.appendChild(windowRow);
@@ -87,7 +88,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     };
 
+    const switchWindow = function switchWindow() {
+        const allWindows = document.querySelectorAll('.window');
+        const roll = randomIntFromInterval(0, allWindows.length - 1);
+        const randomWindow = allWindows[roll];
+        if (randomWindow.classList.contains('on')) {
+            switchWindow();
+        } else {
+            randomWindow.classList.toggle('on');
+            const timeToLightsOut = randomIntFromInterval(5000, 20000);
+            setInterval(function () {
+                randomWindow.classList.toggle('on');
+            }, timeToLightsOut);
+        }
+    };
+
     makeBuildings();
-    setInterval(makeStar, 100);
-    window.makeBuilding = makeBuilding;
+    setInterval(switchWindow, 10);
+    setInterval(makeStar, 30);
 });
